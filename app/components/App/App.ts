@@ -2,6 +2,8 @@ import { Component, View } from 'angular2/core';
 
 import { ProductsListComponent } from './products-list';
 
+import { Product } from './product-interface';
+
 @Component({
     selector: 'my-app',
     directives: [ProductsListComponent],
@@ -12,7 +14,7 @@ import { ProductsListComponent } from './products-list';
     `
 })
 export default class App {
-    private products: Array<Object> = [
+    private products: Product[] = [
         { name: 'iPhone', price: 3000, promoted: true },
         { name: 'Sony', price: 3000, promoted: true },
         { name: 'Samsung', price: 1500, promoted: false  },

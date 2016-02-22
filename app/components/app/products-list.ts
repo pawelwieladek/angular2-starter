@@ -2,10 +2,11 @@ import { Component, View, Pipe, PipeTransform } from 'angular2/core';
 import {COMMON_DIRECTIVES} from 'angular2/common';
 
 import { ProductComponent } from './product';
+import { Product } from "./product-interface";
 
 @Pipe({ name: 'disablePromoted' })
 class DisablePromotedPipe implements PipeTransform {
-  transform(products: Array<{promoted: Boolean}>, args: [Boolean]) {
+  transform(products: Array<Product>, args: [Boolean]) {
     let [ promotedDisabled ] = args;
     if (promotedDisabled) {
       return products.filter(product => !product.promoted);
@@ -38,7 +39,7 @@ class DisablePromotedPipe implements PipeTransform {
   `
 })
 export class ProductsListComponent {
-  public products: Array<Object>;
+  public products: Product[];
 
   private promotedDisabled: Boolean = false;
 
