@@ -1,6 +1,6 @@
 ///<reference path="../../../typings/browser.d.ts" />
 
-import App from "../../../app/components/App/App";
+import App from "../../../app/components/app/app";
 
 describe('AppComponent', function () {
     beforeEach(function () {

@@ -1,9 +1,21 @@
-import {Component, View} from 'angular2/core';
+import { Component, View } from 'angular2/core';
+
+import { ProductsListComponent } from './products-list';
 
 @Component({
     selector: 'my-app',
-    templateUrl: 'built/app/components/App/my-app.html'
+    directives: [ProductsListComponent],
+    template: `
+        <products-list
+            [products]="products">
+        </products-list>
+    `
 })
 export default class App {
-    public hello:string = 'Hello, World!';
+    private products: Array<Object> = [
+        { name: 'iPhone', price: 3000, promoted: true },
+        { name: 'Sony', price: 3000, promoted: true },
+        { name: 'Samsung', price: 1500, promoted: false  },
+        { name: 'Microsoft', price: 1200, promoted: false  }
+    ]
 }
