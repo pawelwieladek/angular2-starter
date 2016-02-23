@@ -27,7 +27,7 @@ class SortPipe implements PipeTransform {
   transform(products: Array<Product>, args: [String, Number, Boolean]) {
     let [ propertyKey, sortOrder, enabled ] = args;
     enabled = enabled || true;
-    return enabled && sortOrder !== 0 ? products.sort(this.compare(propertyKey, sortOrder)) : products;
+    return enabled || sortOrder === 0 ? Array.from(products).sort(this.compare(propertyKey, sortOrder)) : products;
   }
 
   compare(propertyKey, sortOrder) {
