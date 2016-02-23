@@ -31,7 +31,7 @@ class DisablePromotedPipe implements PipeTransform {
           <div class="col-md-3">
             <input type="text" class="form-control" [ngFormControl]="nameFilterInput" placeholder="Filter..." />
           </div>
-          <div class="col-md-2">
+          <div class="col-md-2" *ngIf="nameSortFilter === 0">
             <button class="btn btn-default btn-block" (click)="sortPrice()">
               Sort by price
               <span [ngSwitch]="priceSortFilter">
@@ -86,14 +86,10 @@ export class ProductsListComponent {
 
   filterProducts() {
     let filteredProducts = this._products.filter(product => {
-      return product.name.toLowerCase().indexOf(this.nameFilter.toLowerCase()) > -1;
+      return product.name.toLocaleLowerCase().indexOf(this.nameFilter.toLocaleLowerCase()) > -1;
     });
     if (this.nameSortFilter !== 0) {
-      filteredProducts = filteredProducts.sort((p1, p2) => {
-        if (p1.name.toLowerCase() > p2.name.toLowerCase()) return 1;
-        if (p1.name.toLowerCase() < p2.name.toLowerCase()) return -1;
-        return 0;
-      });
+      filteredProducts = filteredProducts.sort((p1, p2) => p1.name.localeCompare(p2.name));
       if (this.nameSortFilter === -1) {
         filteredProducts.reverse();
       }
