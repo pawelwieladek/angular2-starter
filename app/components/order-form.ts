@@ -5,7 +5,7 @@ import { COMMON_DIRECTIVES, FORM_DIRECTIVES, ControlGroup, FormBuilder, Validato
     selector: 'order-form',
     directives: [COMMON_DIRECTIVES, FORM_DIRECTIVES],
     template: `
-    <form class="form-horizontal" [ngFormModel]="orderForm" (submit)="submit()">
+    <form class="form-horizontal" [ngFormModel]="orderForm" (submit)="submit($event)">
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="form-group">
@@ -52,23 +52,43 @@ import { COMMON_DIRECTIVES, FORM_DIRECTIVES, ControlGroup, FormBuilder, Validato
 })
 export class OrderFormComponent {
     public orderForm: ControlGroup;
+    public firstNameControl: Control;
+    public lastNameControl: Control;
+    public emailControl: Control;
+    public productNameControl: Control;
+    public quantityControl: Control;
 
-    constructor (private formBuilder: FormBuilder) {
+    constructor(private formBuilder: FormBuilder) {
+        this.firstNameControl = new Control('', Validators.required);
+        this.lastNameControl = new Control('', Validators.required);
+        this.emailControl = new Control('', Validators.compose([ Validators.required, OrderFormComponent.validateEmail ]));
+        this.productNameControl = new Control('', Validators.required);
+        this.quantityControl = new Control(0, Validators.required);
         this.orderForm = formBuilder.group({
-            firstName: formBuilder.control('', Validators.required),
-            lastName: formBuilder.control('', Validators.required),
-            email: formBuilder.control('', Validators.compose([ Validators.required, this.validateEmail ])),
-            productName: formBuilder.control('', Validators.required),
-            quantity: formBuilder.control(0, Validators.required)
+            firstName: this.firstNameControl,
+            lastName: this.lastNameControl,
+            email: this.emailControl,
+            productName: this.productNameControl,
+            quantity: this.quantityControl
         });
     }
 
-    submit() {
-        let { firstName, lastName, email, productName, quantity } = this.orderForm.value;
-        console.log(firstName, lastName, email, productName, quantity);
+    static validateEmail(control: Control) {
+        return /^\S+@\S+\.\S+$/.test(control.value) ? null : { email: true };
     }
 
-    private validateEmail(control: Control) {
-        return /^\S+@\S+\.\S+$/.test(control.value) ? null : { email: true };
+    public submit(event) {
+        event.preventDefault();
+        let { firstName, lastName, email, productName, quantity } = this.orderForm.value;
+        console.log(firstName, lastName, email, productName, quantity);
+        this.resetForm();
+    }
+
+    private resetForm() {
+        this.firstNameControl.updateValue('', {});
+        this.lastNameControl.updateValue('', {});
+        this.emailControl.updateValue('', {});
+        this.productNameControl.updateValue('', {});
+        this.quantityControl.updateValue(0, {});
     }
 }
