@@ -5,4 +5,4 @@ import { bootstrap } from 'angular2/bootstrap';
 import { AppComponent } from './components/app';
 import { ProductsService } from './services/products-service';
 
-bootstrap(AppComponent, [ProductsService]);
+bootstrap(<any>AppComponent, [ProductsService]);

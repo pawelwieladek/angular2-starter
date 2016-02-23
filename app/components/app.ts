@@ -4,6 +4,7 @@ import { Product } from '../interfaces/product';
 import { ProductsService } from '../services/products-service';
 
 import { ProductsListComponent } from './products-list';
+import {Function} from "../../node_modules/typescript/lib/lib.es6";
 
 @Component({
     selector: 'my-app',
