@@ -1,11 +1,11 @@
 import { Component, View } from 'angular2/core';
-import {COMMON_DIRECTIVES} from 'angular2/common';
+import { COMMON_DIRECTIVES } from 'angular2/common';
 
 @Component({
-  selector: 'product',
-  inputs: ['name', 'price', 'promoted'],
-  directives: [COMMON_DIRECTIVES],
-  template: `
+    selector: 'product',
+    inputs: ['name', 'price', 'promoted'],
+    directives: [COMMON_DIRECTIVES],
+    template: `
     <div class="row">
       <div class="col-md-4">
         <strong>
@@ -22,7 +22,7 @@ import {COMMON_DIRECTIVES} from 'angular2/common';
   `
 })
 export class ProductComponent {
-  public name:String;
-  public price:Number;
-  public promoted:Boolean;
+    public name:String;
+    public price:Number;
+    public promoted:Boolean;
 }

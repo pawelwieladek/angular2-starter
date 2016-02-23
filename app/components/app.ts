@@ -4,15 +4,14 @@ import { Product } from '../interfaces/product';
 import { ProductsService } from '../services/products-service';
 
 import { ProductsListComponent } from './products-list';
-import {Function} from "../../node_modules/typescript/lib/lib.es6";
+import { OrderFormComponent } from './order-form';
 
 @Component({
     selector: 'my-app',
-    directives: [ProductsListComponent],
+    directives: [ProductsListComponent, OrderFormComponent],
     template: `
-        <products-list
-            [products]="products">
-        </products-list>
+        <order-form></order-form>
+        <products-list [products]="products"></products-list>
     `
 })
 export class AppComponent {

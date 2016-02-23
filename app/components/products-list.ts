@@ -7,11 +7,11 @@ import { PRODUCT_PIPES } from '../pipes/product-pipes';
 import { ProductComponent } from './product';
 
 @Component({
-  selector: 'products-list',
-  directives: [ProductComponent, COMMON_DIRECTIVES],
-  pipes: [PRODUCT_PIPES],
-  inputs: ['products'],
-  template: `
+    selector: 'products-list',
+    directives: [ProductComponent, COMMON_DIRECTIVES],
+    pipes: [PRODUCT_PIPES],
+    inputs: ['products'],
+    template: `
     <div>
       <div class="well">
         <div class="row">
@@ -54,44 +54,44 @@ import { ProductComponent } from './product';
   `
 })
 export class ProductsListComponent {
-  public products: Product[];
-  public nameFilterInput = new Control();
-  public promotedDisabled: Boolean = false;
-  public phraseValue: String = '';
-  public nameSortValue: Number = 0;
-  public priceSortValue: Number = 0;
+    public products:Product[];
+    public nameFilterInput = new Control();
+    public promotedDisabled:Boolean = false;
+    public phraseValue:String = '';
+    public nameSortValue:Number = 0;
+    public priceSortValue:Number = 0;
 
-  constructor() {
-    this.nameFilterInput.valueChanges.subscribe(value => {
-      this.phraseValue = value;
-    });
-  }
-
-  togglePromoted(promotedDisabled) {
-    this.promotedDisabled = promotedDisabled;
-  }
-
-  nameFilterInputChange(name) {
-    this.phraseValue = name;
-  }
-
-  sortPrice() {
-    if (this.priceSortValue === 0) {
-      this.priceSortValue = 1;
-    } else if (this.priceSortValue === 1) {
-      this.priceSortValue = -1;
-    } else if (this.priceSortValue === -1) {
-      this.priceSortValue = 0;
+    constructor() {
+        this.nameFilterInput.valueChanges.subscribe(value => {
+            this.phraseValue = value;
+        });
     }
-  }
 
-  sortName() {
-    if (this.nameSortValue === 0) {
-      this.nameSortValue = 1;
-    } else if (this.nameSortValue === 1) {
-      this.nameSortValue = -1;
-    } else if (this.nameSortValue === -1) {
-      this.nameSortValue = 0;
+    togglePromoted(promotedDisabled) {
+        this.promotedDisabled = promotedDisabled;
     }
-  }
+
+    nameFilterInputChange(name) {
+        this.phraseValue = name;
+    }
+
+    sortPrice() {
+        if (this.priceSortValue === 0) {
+            this.priceSortValue = 1;
+        } else if (this.priceSortValue === 1) {
+            this.priceSortValue = -1;
+        } else if (this.priceSortValue === -1) {
+            this.priceSortValue = 0;
+        }
+    }
+
+    sortName() {
+        if (this.nameSortValue === 0) {
+            this.nameSortValue = 1;
+        } else if (this.nameSortValue === 1) {
+            this.nameSortValue = -1;
+        } else if (this.nameSortValue === -1) {
+            this.nameSortValue = 0;
+        }
+    }
 }
