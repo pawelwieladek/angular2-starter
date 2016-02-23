@@ -15,9 +15,9 @@ import { Product } from './product-interface';
 })
 export default class App {
     private products: Product[] = [
-        { name: 'iPhone', price: 3000, promoted: true },
-        { name: 'Sony', price: 2500, promoted: true },
-        { name: 'Microsoft', price: 1200, promoted: false  },
-        { name: 'Samsung', price: 1500, promoted: false  }
+        { name: 'iPhone 6s', price: 3000, promoted: true },
+        { name: 'Sony Xperia Z2', price: 2500, promoted: true },
+        { name: 'Microsoft Lumia 950', price: 1200, promoted: false  },
+        { name: 'Samsung Galaxy S6', price: 1500, promoted: false  }
     ]
 }
