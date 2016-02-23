@@ -1,6 +1,6 @@
 import { Component, View } from 'angular2/core';
 
-import { Product } from '../interfaces/product';
+import { Product } from '../models/product';
 import { ProductsService } from '../services/products-service';
 
 import { ProductsListComponent } from './products-list';
@@ -15,9 +15,13 @@ import { OrderFormComponent } from './order-form';
     `
 })
 export class AppComponent {
-    public products: Product[];
+    public products: Product[] = [];
 
     constructor(products: ProductsService) {
-        this.products = products.getProducts();
+        products.getProducts().subscribe(
+            products => this.products = products,
+            error => { console.log('error', error) },
+            () => { console.log('end') }
+        );
     }
 }

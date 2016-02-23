@@ -1,15 +1,17 @@
 import { Injectable } from 'angular2/core';
+import { Http, Response } from 'angular2/http';
+import "rxjs/add/operator/map";
 
-import { Product } from '../interfaces/product';
+import { Observable } from "rxjs/Observable";
+import {Product} from "../models/product";
 
 @Injectable()
 export class ProductsService {
-    public getProducts(): Product[] {
-        return [
-            { name: 'iPhone 6s', price: 3000, promoted: true },
-            { name: 'Sony Xperia Z2', price: 2500, promoted: true },
-            { name: 'Microsoft Lumia 950', price: 1200, promoted: false },
-            { name: 'Samsung Galaxy S6', price: 1500, promoted: false }
-        ]
+    constructor(private http: Http) {}
+
+    public getProducts (): Observable<Product[]> {
+        return this.http.get('data/products.json')
+            .map(res => res.json())
+            .map(data => data.map(Product.fromObject));
     }
 }

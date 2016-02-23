@@ -1,7 +1,7 @@
 import { Component, View, Pipe, PipeTransform } from 'angular2/core';
 import { COMMON_DIRECTIVES, Control } from 'angular2/common';
 
-import { Product } from '../interfaces/product';
+import { Product } from '../models/product';
 import { PRODUCT_PIPES } from '../pipes/product-pipes';
 
 import { ProductComponent } from './product';
@@ -54,7 +54,7 @@ import { ProductComponent } from './product';
   `
 })
 export class ProductsListComponent {
-    public products:Product[];
+    public products: Product[];
     public nameFilterInput = new Control();
     public promotedDisabled:Boolean = false;
     public phraseValue:String = '';
