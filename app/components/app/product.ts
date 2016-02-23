@@ -13,7 +13,7 @@ import {COMMON_DIRECTIVES} from 'angular2/common';
         </strong>
       </div>
       <div class="col-md-4">
-        {{ price }} PLN
+        {{ price | currency:'USD':true }}
       </div>
       <div *ngIf="promoted" class="col-md-4 text-right">
         <div class="label label-success">Promoted</div>
