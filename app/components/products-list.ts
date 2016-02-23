@@ -5,45 +5,28 @@ import { Product } from '../models/product';
 import { PRODUCT_PIPES } from '../pipes/product-pipes';
 
 import { ProductComponent } from './product';
+import { FiltersFormComponent } from './filters-form';
 
 @Component({
     selector: 'products-list',
-    directives: [ProductComponent, COMMON_DIRECTIVES],
+    directives: [COMMON_DIRECTIVES, ProductComponent, FiltersFormComponent],
     pipes: [PRODUCT_PIPES],
     inputs: ['products'],
     template: `
     <div>
-      <div class="well">
-        <div class="row">
-          <div class="col-md-3">
-            <button class="btn btn-primary btn-block" (click)="togglePromoted(!promotedDisabled)">Toggle promoted</button>
-          </div>
-          <div class="col-md-3">
-            <input type="text" class="form-control" [ngFormControl]="nameFilterInput" placeholder="Filter..." />
-          </div>
-          <div class="col-md-2">
-            <button class="btn btn-default btn-block" (click)="sortName()">
-              Sort by name
-              <span [ngSwitch]="nameSortValue">
-                <template [ngSwitchWhen]="1"><span class="glyphicon glyphicon-arrow-down"></span></template>
-                <template [ngSwitchWhen]="-1"><span class="glyphicon glyphicon-arrow-up"></span></template>
-              </span>
-            </button>
-          </div>
-          <div class="col-md-2" *ngIf="nameSortValue === 0">
-            <button class="btn btn-default btn-block" (click)="sortPrice()">
-              Sort by price
-              <span [ngSwitch]="priceSortValue">
-                <template [ngSwitchWhen]="1"><span class="glyphicon glyphicon-arrow-down"></span></template>
-                <template [ngSwitchWhen]="-1"><span class="glyphicon glyphicon-arrow-up"></span></template>
-              </span>
-            </button>
-          </div>
-        </div>
-      </div>
+      <filters-form
+        [promotedVisible]="promotedVisible"
+        [phraseValue]="phraseValue"
+        [sortByPriceOrder]="sortByPriceOrder"
+        [sortByNameOrder]="sortByNameOrder"
+        (promotedVisibilityChange)="togglePromotedVisibility($event)"
+        (phraseChange)="filterByPhrase($event)"
+        (sortByNameChange)="sortByName($event)"
+        (sortByPriceChange)="sortByPrice($event)">
+      </filters-form>
       <div class="list-group">
         <product
-            *ngFor="#product of products | filter:'promoted':promotedDisabled | phrase:'name':phraseValue | sort:'name':nameSortValue | sort:'price':priceSortValue:nameSortValue === 0"
+            *ngFor="#product of products | filter:'promoted':!promotedVisible | phrase:'name':phraseValue | sort:'name':sortByNameOrder | sort:'price':sortByPriceOrder:sortByNameOrder === 0"
             [ngClass]="{ 'list-group-item': true, 'list-group-item-success': product.promoted }"
             [name]="product.name"
             [price]="product.price"
@@ -55,43 +38,24 @@ import { ProductComponent } from './product';
 })
 export class ProductsListComponent {
     public products: Product[];
-    public nameFilterInput = new Control();
-    public promotedDisabled:Boolean = false;
-    public phraseValue:String = '';
-    public nameSortValue:Number = 0;
-    public priceSortValue:Number = 0;
+    public promotedVisible: Boolean = true;
+    public phraseValue: String = '';
+    public sortByNameOrder: Number = 0;
+    public sortByPriceOrder: Number = 0;
 
-    constructor() {
-        this.nameFilterInput.valueChanges.subscribe(value => {
-            this.phraseValue = value;
-        });
+    togglePromotedVisibility(promotedVisible) {
+        this.promotedVisible = promotedVisible;
     }
 
-    togglePromoted(promotedDisabled) {
-        this.promotedDisabled = promotedDisabled;
-    }
-
-    nameFilterInputChange(name) {
+    filterByPhrase(name) {
         this.phraseValue = name;
     }
 
-    sortPrice() {
-        if (this.priceSortValue === 0) {
-            this.priceSortValue = 1;
-        } else if (this.priceSortValue === 1) {
-            this.priceSortValue = -1;
-        } else if (this.priceSortValue === -1) {
-            this.priceSortValue = 0;
-        }
+    sortByPrice(sortByPriceOrder) {
+        this.sortByPriceOrder = sortByPriceOrder;
     }
 
-    sortName() {
-        if (this.nameSortValue === 0) {
-            this.nameSortValue = 1;
-        } else if (this.nameSortValue === 1) {
-            this.nameSortValue = -1;
-        } else if (this.nameSortValue === -1) {
-            this.nameSortValue = 0;
-        }
+    sortByName(sortByNameOrder) {
+        this.sortByNameOrder = sortByNameOrder;
     }
 }
