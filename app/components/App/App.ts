@@ -1,8 +1,8 @@
 import { Component, View } from 'angular2/core';
 
 import { ProductsListComponent } from './products-list';
-
 import { Product } from './product-interface';
+import { ProductRepository } from './products-repository';
 
 @Component({
     selector: 'my-app',
@@ -14,10 +14,9 @@ import { Product } from './product-interface';
     `
 })
 export default class App {
-    private products: Product[] = [
-        { name: 'iPhone 6s', price: 3000, promoted: true },
-        { name: 'Sony Xperia Z2', price: 2500, promoted: true },
-        { name: 'Microsoft Lumia 950', price: 1200, promoted: false  },
-        { name: 'Samsung Galaxy S6', price: 1500, promoted: false  }
-    ]
+    public products: Product[];
+
+    constructor(products: ProductRepository) {
+        this.products = products.getProducts();
+    }
 }

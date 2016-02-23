@@ -3,5 +3,6 @@
 import { bootstrap } from 'angular2/bootstrap';
 
 import App from './components/app/app';
+import { ProductRepository } from './components/app/products-repository';
 
-bootstrap(App);
+bootstrap(App, [ProductRepository]);
