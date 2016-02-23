@@ -1,8 +1,9 @@
 import { Component, View, Pipe, PipeTransform } from 'angular2/core';
 import { COMMON_DIRECTIVES, Control } from 'angular2/common';
 
+import { Product } from '../interfaces/product';
+
 import { ProductComponent } from './product';
-import { Product } from "./product-interface";
 
 @Pipe({ name: 'filter' })
 class FilterPipe implements PipeTransform {

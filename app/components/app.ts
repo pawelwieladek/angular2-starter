@@ -1,8 +1,9 @@
 import { Component, View } from 'angular2/core';
 
+import { Product } from '../interfaces/product';
+import { ProductsService } from '../services/products-service';
+
 import { ProductsListComponent } from './products-list';
-import { Product } from './product-interface';
-import { ProductRepository } from './products-repository';
 
 @Component({
     selector: 'my-app',
@@ -13,10 +14,10 @@ import { ProductRepository } from './products-repository';
         </products-list>
     `
 })
-export default class App {
+export class AppComponent {
     public products: Product[];
 
-    constructor(products: ProductRepository) {
+    constructor(products: ProductsService) {
         this.products = products.getProducts();
     }
 }

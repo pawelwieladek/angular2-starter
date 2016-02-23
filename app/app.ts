@@ -2,7 +2,7 @@
 
 import { bootstrap } from 'angular2/bootstrap';
 
-import App from './components/app/app';
-import { ProductRepository } from './components/app/products-repository';
+import { AppComponent } from './components/app';
+import { ProductsService } from './services/products-service';
 
-bootstrap(App, [ProductRepository]);
+bootstrap(AppComponent, [ProductsService]);

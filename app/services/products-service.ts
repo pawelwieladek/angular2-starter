@@ -1,9 +1,9 @@
 import { Injectable } from 'angular2/core';
 
-import { Product } from './product-interface';
+import { Product } from '../interfaces/product';
 
 @Injectable()
-export class ProductRepository {
+export class ProductsService {
     public getProducts(): Product[] {
         return [
             { name: 'iPhone 6s', price: 3000, promoted: true },
