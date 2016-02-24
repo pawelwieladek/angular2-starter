@@ -10,12 +10,11 @@
                 </button>
                 <span class="navbar-brand">Angular 2 App</span>
             </div>
-            <div class="collapse navbar-collapse" id="nav">
-                <ul class="nav navbar-nav">
-                    <li><a [routerLink]="['Products']">Products</a></li>
-                    <li><a [routerLink]="['Order']">Order</a></li>
-                </ul>
+            <div class="btn-group">
+                <button type="button" class="btn btn-default navbar-btn" [routerLink]="['Products']">Products</button>
+                <button type="button" class="btn btn-default navbar-btn" [routerLink]="['Cart']">Cart</button>
             </div>
+            <button type="button" class="btn btn-default navbar-btn" [routerLink]="['Order']">New order</button>
         </div>
     </nav>
     <router-outlet></router-outlet>
