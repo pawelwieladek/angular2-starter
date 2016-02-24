@@ -4,51 +4,7 @@ import { COMMON_DIRECTIVES, FORM_DIRECTIVES, ControlGroup, FormBuilder, Validato
 @Component({
     selector: 'order-form',
     directives: [COMMON_DIRECTIVES, FORM_DIRECTIVES],
-    template: `
-    <form class="form-horizontal" [ngFormModel]="orderForm" (submit)="submit($event)">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="form-group">
-                    <label for="title" class="col-sm-2">First name</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="title" class="form-control" [ngControl]="'firstName'" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="title" class="col-sm-2">Last name</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="title" class="form-control" [ngControl]="'lastName'" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="title" class="col-sm-2">E-mail</label>
-                    <div class="col-sm-10">
-                        <input type="email" name="title" class="form-control" [ngControl]="'email'" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="title" class="col-sm-2">Product name</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="title" class="form-control" [ngControl]="'productName'" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="title" class="col-sm-2">Quantity</label>
-                    <div class="col-sm-10">
-                        <input type="number" name="title" class="form-control" [ngControl]="'quantity'" />
-                    </div>
-                </div>
-            </div>
-            <div class="panel-footer">
-                <button
-                    [ngClass]="{ 'btn': true, 'btn-success': orderForm.valid, 'btn-danger': !orderForm.valid }"
-                    [disabled]="!orderForm.valid">
-                    Add
-                </button>
-            </div>
-        </div>
-    </form>
-  `
+    templateUrl: 'built/app/templates/order-form.html'
 })
 export class OrderFormComponent {
     public orderForm: ControlGroup;

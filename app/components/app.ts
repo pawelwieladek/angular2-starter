@@ -9,10 +9,7 @@ import { OrderFormComponent } from './order-form';
 @Component({
     selector: 'my-app',
     directives: [ProductsListComponent, OrderFormComponent],
-    template: `
-        <order-form></order-form>
-        <products-list [products]="products"></products-list>
-    `
+    templateUrl: 'built/app/templates/app.html'
 })
 export class AppComponent {
     public products: Product[] = [];

@@ -5,36 +5,7 @@ import { COMMON_DIRECTIVES, Control } from 'angular2/common';
     selector: 'filters-form',
     directives: [COMMON_DIRECTIVES],
     outputs: ['promotedVisibilityChange', 'phraseChange', 'sortByNameChange', 'sortByPriceChange'],
-    template: `
-      <div class="well">
-        <div class="row">
-          <div class="col-md-3">
-            <button class="btn btn-primary btn-block" (click)="handlePromotedVisibilityChange()">Toggle promoted</button>
-          </div>
-          <div class="col-md-3">
-            <input type="text" class="form-control" (keyup)="handlePhraseChange($event)" placeholder="Filter..." [value]="phraseValue" />
-          </div>
-          <div class="col-md-2">
-            <button class="btn btn-default btn-block" (click)="handleSortByNameChange()">
-              Sort by name
-              <span [ngSwitch]="sortByNameOrder">
-                <template [ngSwitchWhen]="1"><span class="glyphicon glyphicon-arrow-down"></span></template>
-                <template [ngSwitchWhen]="-1"><span class="glyphicon glyphicon-arrow-up"></span></template>
-              </span>
-            </button>
-          </div>
-          <div class="col-md-2" *ngIf="sortByNameOrder === 0">
-            <button class="btn btn-default btn-block" (click)="handleSortByPriceChange()">
-              Sort by price
-              <span [ngSwitch]="sortByPriceOrder">
-                <template [ngSwitchWhen]="1"><span class="glyphicon glyphicon-arrow-down"></span></template>
-                <template [ngSwitchWhen]="-1"><span class="glyphicon glyphicon-arrow-up"></span></template>
-              </span>
-            </button>
-          </div>
-        </div>
-      </div>
-    `
+    templateUrl: 'built/app/templates/filters-form.html'
 })
 export class FiltersFormComponent {
     public promotedVisibilityChange: EventEmitter = new EventEmitter();

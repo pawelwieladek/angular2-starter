@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col-sm-4">
+        <strong>
+            {{ name }}
+        </strong>
+    </div>
+    <div class="col-sm-4">
+        {{ price | currency:'USD':true }}
+    </div>
+    <div *ngIf="promoted" class="col-sm-4 text-right">
+        <div class="label label-success">Promoted</div>
+    </div>
+</div>

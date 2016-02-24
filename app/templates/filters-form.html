@@ -1,0 +1,28 @@
+<div class="well">
+    <div class="row">
+        <div class="col-sm-3">
+            <button class="btn btn-primary btn-block" (click)="handlePromotedVisibilityChange()">Toggle promoted</button>
+        </div>
+        <div class="col-sm-3">
+            <input type="text" class="form-control" (keyup)="handlePhraseChange($event)" placeholder="Filter..." [value]="phraseValue" />
+        </div>
+        <div class="col-sm-3">
+            <button class="btn btn-default btn-block" (click)="handleSortByNameChange()">
+                Sort by name
+              <span [ngSwitch]="sortByNameOrder">
+                <template [ngSwitchWhen]="1"><span class="glyphicon glyphicon-arrow-down"></span></template>
+                <template [ngSwitchWhen]="-1"><span class="glyphicon glyphicon-arrow-up"></span></template>
+              </span>
+            </button>
+        </div>
+        <div class="col-sm-3" *ngIf="sortByNameOrder === 0">
+            <button class="btn btn-default btn-block" (click)="handleSortByPriceChange()">
+                Sort by price
+              <span [ngSwitch]="sortByPriceOrder">
+                <template [ngSwitchWhen]="1"><span class="glyphicon glyphicon-arrow-down"></span></template>
+                <template [ngSwitchWhen]="-1"><span class="glyphicon glyphicon-arrow-up"></span></template>
+              </span>
+            </button>
+        </div>
+    </div>
+</div>

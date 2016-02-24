@@ -12,29 +12,7 @@ import { FiltersFormComponent } from './filters-form';
     directives: [COMMON_DIRECTIVES, ProductComponent, FiltersFormComponent],
     pipes: [PRODUCT_PIPES],
     inputs: ['products'],
-    template: `
-    <div>
-      <filters-form
-        [promotedVisible]="promotedVisible"
-        [phraseValue]="phraseValue"
-        [sortByPriceOrder]="sortByPriceOrder"
-        [sortByNameOrder]="sortByNameOrder"
-        (promotedVisibilityChange)="togglePromotedVisibility($event)"
-        (phraseChange)="filterByPhrase($event)"
-        (sortByNameChange)="sortByName($event)"
-        (sortByPriceChange)="sortByPrice($event)">
-      </filters-form>
-      <div class="list-group">
-        <product
-            *ngFor="#product of products | filter:'promoted':!promotedVisible | phrase:'name':phraseValue | sort:'name':sortByNameOrder | sort:'price':sortByPriceOrder:sortByNameOrder === 0"
-            [ngClass]="{ 'list-group-item': true, 'list-group-item-success': product.promoted }"
-            [name]="product.name"
-            [price]="product.price"
-            [promoted]="product.promoted">
-        </product>
-      </div>
-    </div>
-  `
+    templateUrl: 'built/app/templates/products-list.html'
 })
 export class ProductsListComponent {
     public products: Product[];
