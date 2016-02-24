@@ -1,1 +1,10 @@
-<div>Cart</div>
+<div class="list-group">
+    <product
+            *ngFor="#product of products"
+            class="list-group-item"
+            [product]="product"
+            [promotedEnabled]="false"
+            [addToCartEnabled]="false"
+            [removeFromCartEnabled]="true">
+    </product>
+</div>

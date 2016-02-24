@@ -13,9 +13,8 @@
         <product
                 *ngFor="#product of products | filter:'promoted':!promotedVisible | phrase:'name':phraseValue | sort:'name':sortByNameOrder | sort:'price':sortByPriceOrder:sortByNameOrder === 0"
                 [ngClass]="{ 'list-group-item': true, 'list-group-item-success': product.promoted }"
-                [name]="product.name"
-                [price]="product.price"
-                [promoted]="product.promoted">
+                [product]="product"
+                [removeFromCartEnabled]="true">
         </product>
     </div>
 </div>

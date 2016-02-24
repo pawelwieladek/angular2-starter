@@ -3,7 +3,7 @@ import { ROUTER_DIRECTIVES, RouteConfig } from 'angular2/router';
 
 import { ProductsListComponent } from './products-list';
 import { OrderFormComponent } from './order-form';
-import { Cart } from './cart';
+import { CartComponent } from './cart';
 
 @Component({
     selector: 'workshop-app',
@@ -12,7 +12,7 @@ import { Cart } from './cart';
 })
 @RouteConfig([
     { path: '/products', as: 'Products', component: ProductsListComponent, useAsDefault: true },
-    { path: '/cart', as: 'Cart', component: Cart },
+    { path: '/cart', as: 'Cart', component: CartComponent },
     { path: '/order', as: 'Order', component: OrderFormComponent },
 ])
 export class AppComponent {}

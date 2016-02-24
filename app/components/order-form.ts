@@ -1,9 +1,11 @@
-import { Component, View } from 'angular2/core';
+import { Component } from 'angular2/core';
 import { COMMON_DIRECTIVES, FORM_DIRECTIVES, ControlGroup, FormBuilder, Validators, Control } from 'angular2/common';
+import { Product } from '../models/product';
+import { CartComponent } from './cart';
 
 @Component({
     selector: 'order-form',
-    directives: [COMMON_DIRECTIVES, FORM_DIRECTIVES],
+    directives: [COMMON_DIRECTIVES, FORM_DIRECTIVES, CartComponent],
     templateUrl: 'app/templates/order-form.html'
 })
 export class OrderFormComponent {
@@ -13,6 +15,7 @@ export class OrderFormComponent {
     public emailControl: Control;
     public productNameControl: Control;
     public quantityControl: Control;
+    public products: Product[] = [];
 
     constructor(private formBuilder: FormBuilder) {
         this.firstNameControl = new Control('', Validators.required);

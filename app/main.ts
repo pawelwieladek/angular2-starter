@@ -4,6 +4,6 @@ import { HTTP_PROVIDERS } from 'angular2/http';
 import { ROUTER_PROVIDERS } from 'angular2/router';
 
 import { AppComponent } from './components/app';
-import { ProductsService } from './services/products-service';
+import { CUSTOM_SERVICES } from './services/custom-services';
 
-bootstrap(<any>AppComponent, [FORM_PROVIDERS, HTTP_PROVIDERS, ROUTER_PROVIDERS, ProductsService]);
+bootstrap(<any>AppComponent, [FORM_PROVIDERS, HTTP_PROVIDERS, ROUTER_PROVIDERS, CUSTOM_SERVICES]);
