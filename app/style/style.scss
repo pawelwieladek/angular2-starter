@@ -6,3 +6,10 @@ body {
 * {
     box-sizing: border-box;
 }
+
+.router-link-active,
+.router-link-active:hover,
+.router-link-active:focus,
+.router-link-active:active {
+    background-color: #e7e7e7 !important;
+}

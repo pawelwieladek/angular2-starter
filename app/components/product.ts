@@ -5,10 +5,10 @@ import { COMMON_DIRECTIVES } from 'angular2/common';
     selector: 'product',
     inputs: ['name', 'price', 'promoted'],
     directives: [COMMON_DIRECTIVES],
-    templateUrl: 'built/app/templates/product.html'
+    templateUrl: 'app/templates/product.html'
 })
 export class ProductComponent {
-    public name:String;
-    public price:Number;
-    public promoted:Boolean;
+    public name: string;
+    public price: number;
+    public promoted: boolean;
 }

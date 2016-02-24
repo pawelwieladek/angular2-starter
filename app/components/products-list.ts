@@ -2,6 +2,7 @@ import { Component, View, Pipe, PipeTransform } from 'angular2/core';
 import { COMMON_DIRECTIVES, Control } from 'angular2/common';
 
 import { Product } from '../models/product';
+import { ProductsService } from '../services/products-service';
 import { PRODUCT_PIPES } from '../pipes/product-pipes';
 
 import { ProductComponent } from './product';
@@ -11,29 +12,36 @@ import { FiltersFormComponent } from './filters-form';
     selector: 'products-list',
     directives: [COMMON_DIRECTIVES, ProductComponent, FiltersFormComponent],
     pipes: [PRODUCT_PIPES],
-    inputs: ['products'],
-    templateUrl: 'built/app/templates/products-list.html'
+    templateUrl: 'app/templates/products-list.html'
 })
 export class ProductsListComponent {
-    public products: Product[];
-    public promotedVisible: Boolean = true;
-    public phraseValue: String = '';
-    public sortByNameOrder: Number = 0;
-    public sortByPriceOrder: Number = 0;
+    public products: Product[] = [];
+    public promotedVisible: boolean = true;
+    public phraseValue: string = '';
+    public sortByNameOrder: number = 0;
+    public sortByPriceOrder: number = 0;
 
-    togglePromotedVisibility(promotedVisible) {
+    constructor(products: ProductsService) {
+        products.getProducts().subscribe(
+            products => this.products = products,
+            error => { console.log('error', error) },
+            () => { console.log('end') }
+        );
+    }
+
+    togglePromotedVisibility(promotedVisible: boolean) {
         this.promotedVisible = promotedVisible;
     }
 
-    filterByPhrase(name) {
+    filterByPhrase(name: string) {
         this.phraseValue = name;
     }
 
-    sortByPrice(sortByPriceOrder) {
+    sortByPrice(sortByPriceOrder: number) {
         this.sortByPriceOrder = sortByPriceOrder;
     }
 
-    sortByName(sortByNameOrder) {
+    sortByName(sortByNameOrder: number) {
         this.sortByNameOrder = sortByNameOrder;
     }
 }

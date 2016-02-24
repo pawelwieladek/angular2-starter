@@ -1,24 +1,16 @@
 import { Component, View } from 'angular2/core';
-
-import { Product } from '../models/product';
-import { ProductsService } from '../services/products-service';
+import { ROUTER_DIRECTIVES, RouteConfig } from 'angular2/router';
 
 import { ProductsListComponent } from './products-list';
 import { OrderFormComponent } from './order-form';
 
 @Component({
-    selector: 'my-app',
-    directives: [ProductsListComponent, OrderFormComponent],
-    templateUrl: 'built/app/templates/app.html'
+    selector: 'workshop-app',
+    directives: [ROUTER_DIRECTIVES],
+    templateUrl: 'app/templates/app.html'
 })
-export class AppComponent {
-    public products: Product[] = [];
-
-    constructor(products: ProductsService) {
-        products.getProducts().subscribe(
-            products => this.products = products,
-            error => { console.log('error', error) },
-            () => { console.log('end') }
-        );
-    }
-}
+@RouteConfig([
+    { path: '/products', as: 'Products', component: ProductsListComponent, useAsDefault: true },
+    { path: '/order', as: 'Order', component: OrderFormComponent }
+])
+export class AppComponent {}

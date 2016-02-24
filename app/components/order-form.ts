@@ -4,7 +4,7 @@ import { COMMON_DIRECTIVES, FORM_DIRECTIVES, ControlGroup, FormBuilder, Validato
 @Component({
     selector: 'order-form',
     directives: [COMMON_DIRECTIVES, FORM_DIRECTIVES],
-    templateUrl: 'built/app/templates/order-form.html'
+    templateUrl: 'app/templates/order-form.html'
 })
 export class OrderFormComponent {
     public orderForm: ControlGroup;

@@ -1,23 +1,22 @@
-import { Component, View, EventEmitter, Input } from 'angular2/core';
+import { Component, View, EventEmitter, Input, Output } from 'angular2/core';
 import { COMMON_DIRECTIVES, Control } from 'angular2/common';
 
 @Component({
     selector: 'filters-form',
     directives: [COMMON_DIRECTIVES],
-    outputs: ['promotedVisibilityChange', 'phraseChange', 'sortByNameChange', 'sortByPriceChange'],
-    templateUrl: 'built/app/templates/filters-form.html'
+    templateUrl: 'app/templates/filters-form.html'
 })
 export class FiltersFormComponent {
-    public promotedVisibilityChange: EventEmitter = new EventEmitter();
-    public phraseChange: EventEmitter = new EventEmitter();
-    public sortByNameChange: EventEmitter = new EventEmitter();
-    public sortByPriceChange: EventEmitter = new EventEmitter();
-    @Input() promotedVisible: Boolean;
-    @Input() phraseValue: String;
-    @Input() sortByNameOrder: Number;
-    @Input() sortByPriceOrder: Number;
+    @Input() public promotedVisible: boolean;
+    @Input() public phraseValue: string;
+    @Input() public sortByNameOrder: number;
+    @Input() public sortByPriceOrder: number;
+    @Output() public promotedVisibilityChange: EventEmitter<boolean> = new EventEmitter();
+    @Output() public phraseChange: EventEmitter<string> = new EventEmitter();
+    @Output() public sortByNameChange: EventEmitter<number> = new EventEmitter();
+    @Output() public sortByPriceChange: EventEmitter<number> = new EventEmitter();
 
-    static getNextOrderState(currentOrder) {
+    static getNextOrderState(currentOrder: number) {
         if (currentOrder === 0) {
             return 1;
         } else if (currentOrder === 1) {

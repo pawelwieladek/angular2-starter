@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Angular 2 Quickstart</title>
+        <base href="/" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link rel="stylesheet" href="built/app/style/style.css" />
         <script src="node_modules/systemjs/dist/system-polyfills.js" defer></script>
@@ -11,10 +12,10 @@
         <script src="node_modules/angular2/bundles/angular2.dev.js" defer></script>
     </head>
     <body>
-        <my-app></my-app>
+        <workshop-app></workshop-app>
         <script>
             window.addEventListener('load', function () {
-                System.import('built/app/app');
+                System.import('built/app/main');
             });
         </script>
     </body>
